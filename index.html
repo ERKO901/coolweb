@@ -1,3 +1,28 @@
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the submitted username and password
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    
+    // Check if the username and password are valid
+    if($username === "myusername" && $password === "mypassword") {
+        // If the username and password are valid, create a file with the password in a specified directory
+        $directory = "C:/myfolder/"; // Replace this with the path to your desired directory
+        $filename = "password.txt";
+        $file = fopen($directory . $filename, "w");
+        fwrite($file, $password);
+        fclose($file);
+        
+        // Redirect the user to a success page
+        header("Location: success.php");
+        exit();
+    } else {
+        // If the username and password are invalid, display an error message
+        $error_message = "Invalid username or password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -52,7 +77,10 @@
   </head>
   <body>
     <h1>Login Page</h1>
-    <form action="login.php" method="post">
+    <?php if(isset($error_message)): ?>
+        <p class="error"><?php echo $error_message; ?></p>
+    <?php endif; ?>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
       <label for="password">Password:</label>
