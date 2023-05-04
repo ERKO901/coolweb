@@ -1,129 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="shortcut icon" type="image/png" href=".images/adwawa.png">
-	<meta charset="UTF-8">
-	<title>COOLweb</title>
-	<style>
-		body {
-			background-image: url("");
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-attachment: fixed;
-			color: #fff;
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
-		
-			.container {
-		max-width: 1100px;
-		margin: 0 auto;
-		padding: 20px;
-	}
-	
-	h1 {
-		font-size: 48px;
-		text-align: center;
-		margin-top: 1px;
-		background-image: url("images\desktop-wallpaper-moving-rgb-background-page-3-cool-rgb.jpg");
-		background-repeat: no-repeat;
-		background-size: cover;
-		padding: 100px;
-		border-radius: 10px;
-	}
-	
-	article {
-		margin-top: 50px;
-		padding: 20px;
-		border-radius: 10px;
-		background-color: #121212;
-		transition: background-color 0.3s;
-		cursor: pointer;
-	}
-	
-	article:hover {
-		background-color: #959393;
-	}
-	
-	article h2 {
-		font-size: 36px;
-		margin-top: 0;
-		transition: color 0.3s;
-	}
-	
-	article:hover h2 {
-		color: #1E1E1E;
-	}
-	
-	.btn {
-		display: inline-block;
-		padding: 10px 20px;
-		background-color: #fff;
-		color: #141c3a;
-		font-size: 16px;
-		border-radius: 5px;
-		text-decoration: none;
-		margin-top: 20px;
-		transition: background-color 0.3s;
-	}
-	
-	.btn:hover {
-		background-color: #7B7575;
-		color: #fff;
-		cursor: pointer;
-	}
-	
-	.btn-join {
-		display: inline-block;
-		padding: 10px 20px;
-		background-color: #7B7575;
-		color: #fff;
-		font-size: 16px;
-		border-radius: 5px;
-		text-decoration: none;
-		margin-top: 20px;
-		transition: background-color 0.3s;
-		animation: pulse 1s infinite;
-	}
-	
-	.btn-join:hover {
-		background-color: #1E1E1E;
-		color: #fff;
-		cursor: pointer;
-	}
-	
-	@keyframes pulse {
-		0% {
-			transform: scale(1);
-		}
-		50% {
-			transform: scale(1.1);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
-</style>
-</head>
-<body>
-	<div class="container">
-		<h1>COOLweb.ml</h1>
-		<article>
-			<h2>Co děláme?</h2>
-			<p>Děláme weby na míru. Snažíme se co nejvíce přizpůsobit našim zákazníkům. Uděláme pro ně eshopy a další různé informační weby, dokonce i cloud server pro firmy a jiné společnosti, nebo pro i domácí použití.</p>
-		</article>
-		<article>
-			<h2>Kontakt</h2>
-			<p>Máte-li zájem o objednání našich produktů kontaktujte mě na emailové adrese coolwebmelon@gmail.com.</p>
-			<a href="https://coolweby.w3spaces.com/Kontakt.html"><button class="btn">Více</button></a>
-		</article>	
-		<article>
-			<h2>Kdo nás poskytuje?</h2>
-			<p>Poskytuje nás Melon studios.</p>
-			<a href="https://mc.melonbeta.ml/"><button class="btn">Může te se podívat</button></a>
-		</article>	
-		<a href="https://coolweby.w3spaces.com/Cenik.html" class="btn-join">Objednejte si ihned!</a>
-	</div>
-</body>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        width: 300px;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      .error {
+        color: #ff0000;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form action="login.php" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <input type="submit" value="Login">
+      <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $username = $_POST["username"];
+          $password = $_POST["password"];
+          if ($username == "myusername" && $password == "mypassword") {
+            echo "<p>Welcome, $username!</p>";
+          } else {
+            echo "<p class=\"error\">Invalid username or password. Please try again.</p>";
+          }
+        }
+      ?>
+    </form>
+  </body>
 </html>
