@@ -58,17 +58,6 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
       <input type="submit" value="Login">
-      <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          $username = $_POST["username"];
-          $password = $_POST["password"];
-          if ($username == "myusername" && $password == "mypassword") {
-            echo "<p>Welcome, $username!</p>";
-          } else {
-            echo "<p class=\"error\">Invalid username or password. Please try again.</p>";
-          }
-        }
-      ?>
     </form>
   </body>
 </html>
